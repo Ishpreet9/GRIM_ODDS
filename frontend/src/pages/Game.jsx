@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { assets } from '../assets/assets'
+import ChoiceButton from '../components/ChoiceButton.jsx';
 
 const Game = () => {
   const [rockVisible, setRockVisible] = useState(false);
@@ -14,30 +15,29 @@ const Game = () => {
   const paperRef = useRef(null);
   const scissorsRef = useRef(null);
 
-  const handleClick = ({playerChoice}) => {
-    
+  const handleClick = ({ playerChoice }) => {
+
+    const computerChoice = Math.floor((Math.random() * 3) + 1);
+    console.log(computerChoice);
+
     // replace this with computer choice in future.
-    if(playerChoice === 'rock')
-    {
+    if (computerChoice === 1) {
       setIdleLoop(false);
       setRockPlaying(true);
     }
-    else if(playerChoice === 'paper')
-    {
+    else if (computerChoice === 2) {
       setIdleLoop(false);
       setPaperPlaying(true);
     }
-    else if(playerChoice === 'scissors')
-    {
+    else if (computerChoice === 3) {
       setIdleLoop(false);
       setScissorsPlaying(true);
     }
   }
 
-  const handleIdleEnd = ()=>{
-    if(rockPlaying)
-    {
-      if(rockRef.current) {
+  const handleIdleEnd = () => {
+    if (rockPlaying) {
+      if (rockRef.current) {
         rockRef.current.currentTime = 0;
         rockRef.current.play();
       }
@@ -45,10 +45,8 @@ const Game = () => {
       // to prevent rock playing again.
       setRockPlaying(false);
     }
-    else if(paperPlaying)
-    {
-      if(paperRef.current)
-      {
+    else if (paperPlaying) {
+      if (paperRef.current) {
         paperRef.current.currentTime = 0;
         paperRef.current.play();
       }
@@ -56,10 +54,8 @@ const Game = () => {
       // to prevent paper playing again.
       setPaperPlaying(false);
     }
-    else if(scissorsPlaying)
-    {
-      if(scissorsRef.current)
-      {
+    else if (scissorsPlaying) {
+      if (scissorsRef.current) {
         scissorsRef.current.currentTime = 0;
         scissorsRef.current.play();
       }
@@ -89,32 +85,33 @@ const Game = () => {
         className={`absolute z-30 w-full h-full object-cover transition-opacity duration-300 ${rockVisible ? "opacity-100" : "opacity-0"
           }`}
       />
-      <video src={assets.paper} autoPlay muted loop={false} ref={paperRef} className={`absolute z-40 w-full h-full object-cover ${paperVisible ? 'opacity-100' : 'opacity-0' }`}></video>
-      <video src={assets.scissors} autoPlay muted loop={false} ref={scissorsRef} className={`absolute z-40 w-full h-full object-cover ${scissorsVisible ? 'opacity-100' : 'opacity-0' }`}></video>
-      <div className='absolute left-[50%] top-[80%] z-40 flex gap-[10vw]'>
+      <video src={assets.paper} autoPlay muted loop={false} ref={paperRef} className={`absolute z-40 w-full h-full object-cover ${paperVisible ? 'opacity-100' : 'opacity-0'}`}></video>
+      <video src={assets.scissors} autoPlay muted loop={false} ref={scissorsRef} className={`absolute z-40 w-full h-full object-cover ${scissorsVisible ? 'opacity-100' : 'opacity-0'}`}></video>
+      <div className='absolute top-[75%] justify-evenly items-center z-40 flex gap-[10vw] w-full'>
 
-        <button
-          onClick={() =>
-            handleClick({playerChoice : 'rock'})}
-          className="border-4 border-white bg-neutral-200 text-[2vw] px-10 py-2 hover:border-black"
-        >
-          Rock
-        </button>
+        <div onClick={() => handleClick({ playerChoice: 'rock' })}>
+          <ChoiceButton text={'rock'}
+            onClick={() =>
+              handleClick({ playerChoice: 'rock' })}
+            className="border-4 border-white bg-neutral-200 text-[2vw] px-10 py-2 hover:border-black"
+          />
+        </div>
 
-        <button
-          onClick={() =>
-            handleClick({playerChoice : 'paper'})}
-          className="border-4 border-white bg-neutral-200 text-[2vw] px-10 py-2 hover:border-black"
-        >
-          Paper
-        </button>
-        <button
-          onClick={() =>
-            handleClick({playerChoice : 'scissors'})}
-          className="border-4 border-white bg-neutral-200 text-[2vw] px-10 py-2 hover:border-black"
-        >
-          Scissors
-        </button>
+        <div onClick={() => handleClick({ playerChoice: 'paper' })}>
+          <ChoiceButton text={'paper'}
+            onClick={() =>
+              handleClick({ playerChoice: 'paper' })}
+            className="border-4 border-white bg-neutral-200 text-[2vw] px-10 py-2 hover:border-black"
+          />
+        </div>
+
+        <div onClick={() => handleClick({playerChoice: 'scissors'})}>
+          <ChoiceButton text={'scissors'}
+            onClick={() =>
+              handleClick({ playerChoice: 'scissors' })}
+            className="border-4 border-white bg-neutral-200 text-[2vw] px-10 py-2 hover:border-black"
+          />
+        </div>
       </div>
     </div>
   )
