@@ -2,13 +2,14 @@ import React from 'react'
 import { assets } from '../assets/assets'
 import HorrorButton from '../components/Button1'
 
-const Home = () => {
+const Home = ({handlePlay}) => {
   return (
     <div style={
       {
         backgroundImage: `url(${assets.home_bg})`
       }
     } className='relative w-screen h-screen bg-neutral-700 bg-cover'>
+      <div onClick={()=>handlePlay()} className='absolute bottom-10 left-20 text-xl text-white z-30 px-[1vw] py-[0.5vw] border-2 border-neutral-400 bg-neutral-800 cursor-pointer'>PlayAudio</div>
       <img src={assets.texture} alt="" className='absolute opacity-30 w-full h-full mix-blend-overlay' />
       <div className='absolute w-full h-full backdrop-blur-[0.3vw] flex flex-col justify-evenly items-center'>
         <div className='flex flex-col justify-center items-center gap-[1vw]'>
