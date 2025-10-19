@@ -3,8 +3,33 @@ import { assets } from '../assets/assets'
 import ChoiceButton1 from '../components/ChoiceButton1.jsx';
 import EndingScreen from '../components/EndingScreen.jsx';
 import RouletteButton from '../components/RouletteButton.jsx';
+import { useLocation } from 'react-router-dom';
 
 const Game = () => {
+
+  const location = useLocation();
+  const shouldUnmute = location.state?.unmute;
+
+  useEffect(()=>{
+
+    rockRockRef.current.muted = false;
+    rockPaperRef.current.muted = false;
+    rockScissorsRef.current.muted = false;
+    paperPaperRef.current.muted = false;
+    paperRockRef.current.muted = false;
+    paperScissorsRef.current.muted = false;
+    scissorsScissorsRef.current.muted = false;
+    scissorsPaperRef.current.muted = false;
+    scissorsRockRef.current.muted = false;
+    playerAliveRef.current.muted = false;
+    playerDieRef.current.muted = false;
+    npcAliveRef.current.muted = false;
+    npcDieRef.current.muted = false;
+    idleRef.current.muted = false;
+
+  },[shouldUnmute])
+
+
 
   const [rockRockVisible, setRockRockVisible] = useState(false);
   const [rockPaperVisible, setRockPaperVisible] = useState(false);

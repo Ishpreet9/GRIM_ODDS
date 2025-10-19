@@ -1,6 +1,6 @@
 import React from 'react'
 import { assets } from '../assets/assets'
-import Button1 from './Button1';
+import HorrorButton from './HorrorButton';
 
 const EndingScreen = ({resetGameState, showEndingScreen, isGameWin}) => {
   return (
@@ -17,7 +17,7 @@ const EndingScreen = ({resetGameState, showEndingScreen, isGameWin}) => {
       } src={assets.you_lost} autoPlay muted loop className='relative z-60 w-[60%]'></video>
       }
 
-      <Button1 resetGameState={resetGameState} text={isGameWin ? 'Play Again' : 'Restart'}/>
+      <HorrorButton resetGameState={resetGameState} text={isGameWin ? 'Play Again' : 'Restart'}/>
     </div>
   )
 }

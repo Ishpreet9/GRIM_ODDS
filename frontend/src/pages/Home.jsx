@@ -1,8 +1,9 @@
 import React from 'react'
 import { assets } from '../assets/assets'
-import HorrorButton from '../components/Button1'
+import HorrorButton from '../components/HorrorButton'
 
 const Home = ({handlePlay}) => {
+  
   return (
     <div style={
       {
@@ -26,7 +27,7 @@ const Home = ({handlePlay}) => {
           } className='text-[2vw] text-neutral-300 bg-red-700/50 px-[1vw] rounded-[0.2vw] tracking-[0.15vw] font-extralight'>"Every round is a gamble, every loss a bullet closer."</span>
         </div>
         <div className='flex flex-col gap-[2.1vw]'>
-          <HorrorButton text={'DARE TO PLAY'} page={'/play'} />
+          <HorrorButton text={'DARE TO PLAY'} page={'/load-assets'} />
           <HorrorButton text={'-SETTINGS-'} page={'/settings'} />
         </div>
       </div>

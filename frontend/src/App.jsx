@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from './pages/Home'
 import Game from './pages/Game';
 import { assets } from './assets/assets';
+import LoadAssets from './pages/LoadAssets';
 
 const App = () => {
 
@@ -11,7 +12,7 @@ const App = () => {
   const handlePlay = () => {
     if (audioRef.current) {
       audioRef.current.loop = true; // ensure loop
-      audioRef.current.volume = 0.7;    // set volume to 70%
+      audioRef.current.volume = 0.13;    // set volume
       audioRef.current.play();
     }
   };
@@ -24,6 +25,10 @@ const App = () => {
     {
       path: '/play',
       element: <Game />
+    },
+    {
+      path: '/load-assets',
+      element: <LoadAssets />
     }
   ]);
 
